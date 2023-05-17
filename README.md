@@ -1,5 +1,4 @@
-# PythonCodeCompletion
-Python kodunuzu tamamlayan ve önerilerde bulunan bir program Dil: Python
+
 # Python Code Completion
 
 Python Code Completion is a program that automatically completes your Python code and provides code suggestions using OpenAI's GPT-3.5 language model.
