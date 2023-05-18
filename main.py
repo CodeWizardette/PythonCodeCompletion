@@ -1,3 +1,9 @@
+import logging
+import json
+import openai
+
+openai.api_key = "your-api-key"
+
 devices = jax.devices()
 if len(devices) > 1:
     raise ValueError("Farklı sayıda cihaza sahip olmak henüz desteklenmiyor.")
