@@ -1,20 +1,22 @@
+NEED HELP FOR THIS---->
+    package.json
+    extension.js 
+    completionProvider.js (or diffirent name) 
+    userInterface.js (or diffirent name)
+    utils.js (or diffirent name) 
 
-# Python Code Completion
-
+Python Code Completion
 Python Code Completion is a program that automatically completes your Python code and provides code suggestions using OpenAI's GPT-3.5 language model.
 
 ## How It Works
-
 Python Code Completion takes the Python code input from the user and the lines to be completed. It uses OpenAI's GPT-3.5 language model to generate completion suggestions and presents them to the user. The user can review the suggested code and obtain the completed code.
 
 ## Features
-
 - Automatic code completion for Python
 - Code suggestions based on keywords
 - User-friendly and interactive interface
 
 ## Usage
-
 1. Enter your Python code.
 2. Specify the lines to be completed.
 3. The program will provide completion suggestions.
