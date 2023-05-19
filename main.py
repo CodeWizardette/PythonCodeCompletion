@@ -47,7 +47,7 @@ def data_filter(data_item):
     # --> Verilerinizi filtreleyebilirsiniz (örn. Metni temizleyerek, zorluğu belirleyerek vb.)
 
 
-context_length = 2048 # --> Burada Max TrainSequenceLength kullanılır. Bu sabit, "modelType" ile de ilgilidir.
+    context_length = 2048 # --> Burada Max TrainSequenceLength kullanılır. Bu sabit, "modelType" ile de ilgilidir.
 
 batch_tokenizer = transformers.GPT2TokenizerFast.from_pretrained(model_name_or_path, pad_token="")
 
