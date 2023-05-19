@@ -31,63 +31,63 @@ from flax.serialization import to_bytes, from_bytes
 def code_suggestion(keyword):
     """Anahtar kelimeye benzer kod ipuçları önerir."""
     codes = [
-    "del variable",
-    "pass",
-    "delattr(object, name)",
-    "getattr(object, name)",
-    "hasattr(object, name)",
-    "setattr(object, name, value)",
-    "type(object)",
-    "len(sequence)",
-    "list(iterable)",
-    "tuple(iterable)",
-    "dict(**kwargs)",
-    "set(iterable)",
-    "frozenset(iterable)",
-    "max(iterable)",
-    "min(iterable)",
-    "abs(number)",
-    "sum(iterable)",
-    "sorted(iterable)",
-    "reversed(sequence)",
-    "enumerate(iterable)",
-    "zip(*iterables)",
-    "range(start, stop, step)",
-    "round(number, ndigits)",
-    "int(x)",
-    "float(x)",
-    "str(object)",
-    "bool(x)",
-    "input(prompt)",
-    "print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)",
-    "open(file, mode='r', encoding='utf-8')",
-    "os.path.exists(path)",
-    "os.path.isfile(path)",
-    "os.path.isdir(path)",
-    "os.listdir(path)",
-    "os.getcwd()",
-    "os.chdir(path)",
-    "os.mkdir(path)",
-    "os.makedirs(path)",
-    "os.remove(path)",
-    "os.rename(src, dst)",
-    "os.system(command)",
-    "shutil.copy(src, dst)",
-    "shutil.move(src, dst)",
-    "time.sleep(seconds)",
-    "math.ceil(x)",
-    "math.floor(x)",
-    "math.sqrt(x)",
-    "math.pow(x, y)",
-    "math.sin(x)",
-    "math.cos(x)",
-    "math.tan(x)",
-    "math.log(x)",
-    "random.random()",
-    "random.randint(a, b)",
-    "random.choice(sequence)",
-    "random.shuffle(sequence)",
-]
+        "del variable",
+        "pass",
+        "delattr(object, name)",
+        "getattr(object, name)",
+        "hasattr(object, name)",
+        "setattr(object, name, value)",
+        "type(object)",
+        "len(sequence)",
+        "list(iterable)",
+        "tuple(iterable)",
+        "dict(**kwargs)",
+        "set(iterable)",
+        "frozenset(iterable)",
+        "max(iterable)",
+        "min(iterable)",
+        "abs(number)",
+        "sum(iterable)",
+        "sorted(iterable)",
+        "reversed(sequence)",
+        "enumerate(iterable)",
+        "zip(*iterables)",
+        "range(start, stop, step)",
+        "round(number, ndigits)",
+        "int(x)",
+        "float(x)",
+        "str(object)",
+        "bool(x)",
+        "input(prompt)",
+        "print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)",
+        "open(file, mode='r', encoding='utf-8')",
+        "os.path.exists(path)",
+        "os.path.isfile(path)",
+        "os.path.isdir(path)",
+        "os.listdir(path)",
+        "os.getcwd()",
+        "os.chdir(path)",
+        "os.mkdir(path)",
+        "os.makedirs(path)",
+        "os.remove(path)",
+        "os.rename(src, dst)",
+        "os.system(command)",
+        "shutil.copy(src, dst)",
+        "shutil.move(src, dst)",
+        "time.sleep(seconds)",
+        "math.ceil(x)",
+        "math.floor(x)",
+        "math.sqrt(x)",
+        "math.pow(x, y)",
+        "math.sin(x)",
+        "math.cos(x)",
+        "math.tan(x)",
+        "math.log(x)",
+        "random.random()",
+        "random.randint(a, b)",
+        "random.choice(sequence)",
+        "random.shuffle(sequence)",
+    ]
 
     if keyword == "def":
         codes.append("def function_name(args):\n\t# Function body\n\tpass")
@@ -151,27 +151,12 @@ def code_suggestion(keyword):
     return codes
 
 
-def code_suggestion(keyword):
-    """Anahtar kelimeye benzer kod ipuçları önerir."""
-    codes = []
-
-    if keyword == "def":
-        codes.append("def function_name(args):\n\t# Function body\n\tpass")
-    elif keyword.isalpha():
-        codes.append(f"{keyword} = 0")
-    elif keyword.isdigit():
-        codes.append(f"num = {keyword}")
-
-    return codes
-
-openai.api_key = "your-api-key"
-
 def complete_python_code(prompt, code_lines, max_tokens=100, temperature=0.7):
     """Python kodunu tamamlayan ve döndüren ana fonksiyon."""
-    
+
     code_prompt = f'```python\n{prompt}\n'
     code_prompt += '\n'.join(code_lines) + '\n```'
-    
+
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=code_prompt,
@@ -180,7 +165,7 @@ def complete_python_code(prompt, code_lines, max_tokens=100, temperature=0.7):
         n=1,
         stop=None
     )
-    
+
     completed_text = response.choices[0].text.strip()
 
     if completed_text.startswith("```python"):
@@ -193,7 +178,7 @@ def complete_python_code(prompt, code_lines, max_tokens=100, temperature=0.7):
 
 def get_user_input():
     """Kullanıcının kod girişi alınır ve tuple olarak döndürülür."""
-    
+
     prompt = input("Python kodunu girin:\n")
     code_lines = []
     while True:
@@ -206,20 +191,20 @@ def get_user_input():
 
 def main():
     """Programın çalıştırılmasını sağlayan ana fonksiyon."""
-    
+
     while True:
         prompt, code_lines = get_user_input()
-        
+
         # Kullanıcının boş bir girdi vermesi durumunda program sonlanır
         if not prompt:
             break
-        
+
         # Anahtar kelimeye göre ipuçları önerilir
         suggestion = code_suggestion(prompt.split(' ')[0])
-        
+
         if len(suggestion) > 0:
             print(f"{suggestion[0]} -> Örnek fonksiyon tanımı.")
-            
+
         completed_code = complete_python_code(prompt, code_lines)
         print("Tamamlanan kod:\n", completed_code)
 
